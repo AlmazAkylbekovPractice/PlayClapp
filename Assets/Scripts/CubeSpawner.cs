@@ -16,24 +16,17 @@ public class CubeSpawner : MonoBehaviour
     void Awake()
     {
         _spawnPosition = transform.position;
-
-        LoadCubeProperties();
-
         StartCoroutine(SpawnCube());
     }
-
-    private void LoadCubeProperties()
-    {
-        Cube._distance = _distance;
-        Cube._speed = _speed;
-        Cube._randndomiseDirection = _randndomiseDirection;
-    }
-
 
     IEnumerator SpawnCube()
     {
         while (true)
         {
+            _cubePrefab.GetComponent<Cube>()._distance = _distance;
+            _cubePrefab.GetComponent<Cube>()._speed = _speed;
+            _cubePrefab.GetComponent<Cube>()._randndomiseDirection = _randndomiseDirection;
+
             Instantiate(_cubePrefab, _spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(_spawnTime);
         }

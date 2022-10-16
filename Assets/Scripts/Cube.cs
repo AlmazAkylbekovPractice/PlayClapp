@@ -6,9 +6,9 @@ public class Cube : MonoBehaviour
 {
     private Rigidbody _rigidbody;
 
-    public static float _distance;
-    public static float _speed;
-    public static bool _randndomiseDirection;
+    public float _distance;
+    public float _speed;
+    public bool _randndomiseDirection;
 
     private Vector3 targetPoint;
     private Quaternion rotationZ;
@@ -16,7 +16,9 @@ public class Cube : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+
         Debug.Log(_distance);
+
         //Adjusting final destination
         targetPoint = transform.position;
 
