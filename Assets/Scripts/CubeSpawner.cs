@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
+using UnityEngine.UI;
 
 public class CubeSpawner : MonoBehaviour
 {
@@ -12,11 +15,28 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private bool _randndomiseDirection;
 
+    [SerializeField] GameObject speedText;
+    [SerializeField] GameObject distanceText;
+    [SerializeField] GameObject spawnTimeText;
+    [SerializeField] GameObject randomToggle;
 
     void Awake()
     {
         _spawnPosition = transform.position;
+
+        speedText.GetComponent<TMP_InputField>().text = "2";
+        distanceText.GetComponent<TMP_InputField>().text = "2";
+        spawnTimeText.GetComponent<TMP_InputField>().text = "2";
+
         StartCoroutine(SpawnCube());
+    }
+
+    private void Update()
+    {
+        _speed = float.Parse(speedText.GetComponent<TMP_InputField>().text);
+        _distance = float.Parse(distanceText.GetComponent<TMP_InputField>().text);
+        _spawnTime = float.Parse(spawnTimeText.GetComponent<TMP_InputField>().text);
+        _randndomiseDirection = randomToggle.GetComponent<Toggle>().isOn;
     }
 
     IEnumerator SpawnCube()
@@ -31,4 +51,5 @@ public class CubeSpawner : MonoBehaviour
             yield return new WaitForSeconds(_spawnTime);
         }
     }
+
 }

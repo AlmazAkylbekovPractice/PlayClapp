@@ -17,22 +17,28 @@ public class Cube : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
 
-        Debug.Log(_distance);
-
         //Adjusting final destination
         targetPoint = transform.position;
 
         if (_randndomiseDirection)
         {
             //Randomizing Z Axis
-            if (Random.value < 0.5f)
+            if (Random.value < 0.25f)
             {
                 targetPoint.z += _distance;
                 targetPoint.x += Random.Range(-_distance, _distance);
-            } else
+            } else if (Random.value < 0.5f)
             {
                 targetPoint.z -= _distance;
                 targetPoint.x += Random.Range(-_distance, _distance);
+            } else if (Random.value < 0.75f)
+            {
+                targetPoint.x -= _distance;
+                targetPoint.z += Random.Range(-_distance, _distance);
+            } else
+            {
+                targetPoint.x -= _distance;
+                targetPoint.z += Random.Range(-_distance, _distance);
             }
         }
         else
